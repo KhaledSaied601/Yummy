@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yummy</title>
+  <link rel="stylesheet" href="./css/all.min.css">
+  <link rel="stylesheet" href="./css/output.css">
+</head>
+<body class="bg-black ">
+
+
+  <div class="nav-section min-h-screen fixed z-20 top-0 left-0  bg-white flex ">
+
+    <div class="nav-content-part bg-black flex flex-col justify-between py-7 px-6 ">
+      <div class="menu-section">
+        <ul class="text-white space-y-3">
+          <li class="hover:cursor-pointer">Search</li>
+          <li class="hover:cursor-pointer">Categories</li>
+          <li class="hover:cursor-pointer">Area</li>
+          <li class="hover:cursor-pointer">Ingredients</li>
+          <li class="hover:cursor-pointer">Contact Us</li>
+        </ul>
+      </div>
+
+      <div>
+        <i class="fa-brands fa-facebook  text-white"></i>
+        <i class="fa-brands fa-twitter  text-white"></i>
+        <i class="fa-solid fa-share-nodes    text-white"></i>
+        <p class="text-white">Copyright Â© 2019 All Rights
+          Reserved.</p>
+      </div>
+
+    </div>
+
+    <div class="nav-visible-part bg-white  flex flex-col justify-between items-center py-7 px-2">
+      <img src="./img/logo.png" class="w-[60px]" alt="">
+      <i id="closeIcon" class="icon fa-solid fa-x text-4xl text-black hover:cursor-pointer hidden"></i>
+      <i id="openIcon" class="icon fa-solid fa-bars text-4xl text-black hover:cursor-pointer "></i>
+      <div class="flex flex-col space-y-2">
+        <i class="fa-solid fa-globe    text-black"></i>
+        <i class="fa-solid fa-share-nodes    text-black"></i>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+  <div class="search-section hidden">
+
+    <div class="container  m-auto mt-12 px-20 py-2">
+
+      <div class="search-content flex flex-wrap">
+
+        <div class="search-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="ByName"
+            class="bg-transparent border border-white rounded-md py-3 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Search By Name">
+        </div>
+
+        <div class="search-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="ByFirstLetter"
+            class="bg-transparent border border-white rounded-md py-3 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Search By First Letter">
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+  <div class="home-section ">
+
+    <div class="container m-auto mt-12 px-20 py-2">
+
+      <div class="home-content flex flex-wrap">
+  
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+  <div class="category-section hidden">
+
+    <div class="container m-auto mt-12 px-20 py-2">
+
+      <div class="category-content flex flex-wrap">
+
+        <div class="card-container md:w-3/12 sm:min-w-12 p-3 shrink-0 ">
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="meal-details hidden">
+    <div class="conatiner  mx-auto mt-12 px-24 py-5 ">
+      <div class="details-content flex ">
+
+        <!-- <div class="meal-img w-4/12 p-4">
+          <img src="../static/img/sytuqu1511553755.jpg" class="w-full rounded-xl overflow-hidden" alt="">
+          <h2 class="text-3xl font-semibold text-white">Beef and Mustard Pie</h2>
+
+        </div>
+
+
+        <div class="meal-content w-8/12 p-4">
+
+          <h2 class="text-3xl font-semibold text-white">Instructions</h2>
+          <p class="text-white mt-3">Preheat the oven to 150C/300F/Gas 2. Toss the beef and flour together in a bowl
+            with
+            some salt and black
+            pepper. Heat a large casserole until hot, add half of the rapeseed oil and enough of the beef to just cover
+            the bottom of the casserole. Fry until browned on each side, then remove and set aside. Repeat with the
+            remaining oil and beef. Return the beef to the pan, add the wine and cook until the volume of liquid has
+            reduced by half, then add the stock, onion, carrots, thyme and mustard, and season well with salt and
+            pepper. Cover with a lid and place in the oven for two hours. Remove from the oven, check the seasoning and
+            set aside to cool. Remove the thyme. When the beef is cool and you're ready to assemble the pie, preheat the
+            oven to 200C/400F/Gas 6. Transfer the beef to a pie dish, brush the rim with the beaten egg yolks and lay
+            the pastry over the top. Brush the top of the pastry with more beaten egg. Trim the pastry so there is just
+            enough excess to crimp the edges, then place in the oven and bake for 30 minutes, or until the pastry is
+            golden-brown and cooked through. For the green beans, bring a saucepan of salted water to the boil, add the
+            beans and cook for 4-5 minutes, or until just tender. Drain and toss with the butter, then season with black
+            pepper. To serve, place a large spoonful of pie onto each plate with some green beans alongside.</p>
+          <h3 class="text-white text-3xl font-semibold mt-3"><span>Area :</span><span class="area"> British</span></h3>
+          <h3 class="text-white text-3xl font-semibold mt-3"><span>Category :</span><span class="caegory"> Beef</span>
+          </h3>
+          <h3 class="text-white text-3xl font-semibold mt-3"><span>Recipes :</span></h3>
+          <div class="recipes flex flex-shrink-0 flex-wrap justify-start items-center mt-3   ">
+
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+            <div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">1kg Beef</div>
+
+
+
+          </div>
+
+
+          <h3 class="text-white text-3xl font-semibold mt-3"><span>Tags :</span></h3>
+
+
+          <div class="tags flex flex-shrink-0 flex-wrap justify-start items-center mt-1   ">
+
+            <div class="tag bg-red-200 text-red-700 p-1 py-2 rounded-lg overflow-hidden me-[16px] mt-[16px]">Meat</div>
+            <div class="tag bg-red-200 text-red-700 p-1 py-2 rounded-lg overflow-hidden me-[16px] mt-[16px]">Pie</div>
+
+
+
+
+          </div>
+
+
+          
+          <div class="buttons mt-5">
+            <button
+              class="text-white bg-green-600 px-3 py-2 rounded-lg hover:bg-green-700 transition-all duration-500"><a
+                href="">Source</a></button>
+            <button class="text-white bg-red-600 px-3 py-2 rounded-lg hover:bg-red-700 transition-all duration-500"><a
+                href="">Youtube</a></button>
+
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="area-section hidden">
+
+    <div class="container  m-auto mt-12 px-20 py-2">
+
+      <div class="area-content flex flex-wrap">
+
+
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+  <div class="ingredients-section hidden">
+
+    <div class="container  m-auto mt-12 px-20 py-2">
+
+      <div class="ingredients-content flex flex-wrap">
+
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+  <div class="contact-section mt-96 hidden">
+
+    <div class="container   m-auto mt-12 px-56 py-2">
+
+      <div class="contact-content flex flex-wrap">
+
+        <div class="contact-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="contact-name"
+            class=" border border-white rounded-md py-1 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Enter Your Name">
+        </div>
+
+        <div class="contact-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="contact-email"
+            class=" border border-white rounded-md py-1 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Enter Your Email">
+        </div>
+
+        <div class="contact-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="contact-phone"
+            class=" border border-white rounded-md py-1 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Enter Your Phone">
+        </div>
+
+
+        <div class="contact-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="contact-age"
+            class=" border border-white rounded-md py-1 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Enter Your Age">
+        </div>
+        <div class="contact-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="contact-password"
+            class=" border border-white rounded-md py-1 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Enter Your Password">
+        </div>
+        <div class="contact-container md:w-6/12 sm:min-w-12 p-3 shrink-0 ">
+          <input id="contact-repassword"
+            class=" border border-white rounded-md py-1 px-2 w-full focus:ring-[3px]  focus:ring-blue-400 focus:outline-none"
+            type="text" placeholder="Repassword">
+        </div>
+
+        <button disabled
+          class="disabled:border-red-800 disabled:text-red-800 disabled:hover:bg-transparent p-2 border border-red-600 rounded-lg text-red-600 hover:bg-red-600 hover:text-white  w-1/12 mx-auto ">Submit</button>
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+  <script src="./jquery.min.js"></script>
+  <script type="module" src="./main.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
