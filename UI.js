@@ -15,15 +15,78 @@ export class UI extends APIs {
             if (isClose) {
                 $('.nav-section').animate({
                     left: 0
-                }, 1000)
+                }, 300, () => {
+
+                    $('ul').children().first().animate({
+                        top: 0,
+                        opacity: 1
+                    }, 120, () => {
+                        $('ul').children().first().next().animate({
+
+                            top: 0,
+                            opacity: 1
+                        }, 120, () => {
+                            $('ul').children().first().next().next().animate({
+                                top: 0,
+                                opacity: 1
+                            }, 120, () => {
+                                $('ul').children().first().next().next().next().animate({
+                                    top: 0,
+                                    opacity: 1
+                                }, 120, () => {
+                                    $('ul').children().first().next().next().next().next().animate({
+                                        top: 0,
+                                        opacity: 1
+                                    }, 120)
+                                })
+                            })
+                        })
+                    })
+
+
+                })
                 $('#openIcon').toggleClass('hidden')
                 $('#closeIcon').toggle('hidden')
                 isClose = false
             }
             else {
+
                 $('.nav-section').animate({
                     left: -$('.nav-content-part').outerWidth(true)
-                }, 1000)
+                }, 300, () => {
+
+                    $('ul').children().first().animate({
+                        top: '100%',
+                        opacity: 0
+                    }, 0, () => {
+                        $('ul').children().first().next().animate({
+
+                            top: '100%',
+                            opacity: 0
+                        }, 0, () => {
+                            $('ul').children().first().next().next().animate({
+                                top: '100%',
+                                opacity: 0
+                            }, 0, () => {
+                                $('ul').children().first().next().next().next().animate({
+                                    top: '100%',
+                                    opacity: 0
+                                }, 0, () => {
+                                    $('ul').children().first().next().next().next().next().animate({
+                                        top: '100%',
+                                        opacity: 0
+                                    }, 0)
+                                })
+                            })
+                        })
+                    })
+
+
+                })
+
+
+
+
 
                 $('#closeIcon').toggle('hidden', () => {
                     $('#openIcon').toggleClass('hidden')
@@ -43,8 +106,8 @@ export class UI extends APIs {
     getMealsHTML(meal) {
 
 
-        return `<div class="card-container md:w-3/12 sm:min-w-12 p-3 shrink-0 ">
-            <div id='${meal.idMeal}'  class="card w-full  rounded-xl overflow-hidden relative group">
+        return `<div class="card-container md:w-3/12 sm:min-w-12 p-3 shrink-0 cursor-pointer">
+            <div id='${meal.idMeal}'  class="card w-full  rounded-xl overflow-hidden relative group hover:cursor-pointer">
               <img src="${meal.strMealThumb}" class="w-full" alt="">
               <div
                 class="head w-full h-full absolute left-0 top-[100%] bg-white bg-opacity-80 flex items-center ps-3 text-4xl group-hover:top-0  transition-all duration-500">
@@ -56,24 +119,45 @@ export class UI extends APIs {
     }
 
 
-    async showRandomFirstMeals(callback, callback2, callback3) {
+    async showMealsByLetter(Letter, querySelector, callback, callback2, callback3) {
+        $('.loading-page').fadeIn(50)
 
-        const data = await this.getMealsByName('')
+        const data = await this.getMealsByLetter(Letter)
 
         const html = data.meals.map((e) => {
             return this.getMealsHTML(e)
         })
 
-        document.querySelector('.home-content').innerHTML = html.join('')
+        document.querySelector(querySelector).innerHTML = html.join('')
 
         await callback(callback2, callback3)
+        $('.loading-page').fadeOut(50)
+
+    }
+
+
+    async showMealsByName(mealName, querySelector, callback, callback2, callback3) {
+
+        $('.loading-page').fadeIn(50)
+
+        const data = await this.getMealsByName(mealName)
+
+        const html = data.meals.map((e) => {
+            return this.getMealsHTML(e)
+        })
+
+        document.querySelector(querySelector).innerHTML = html.join('')
+
+        await callback(callback2, callback3)
+        $('.loading-page').fadeOut(50)
+
     }
 
 
 
     getCategoriesHTML(meal) {
         return `        <div class="card-container md:w-3/12 sm:min-w-12 p-3 shrink-0 ">
-          <div class="card w-full  rounded-xl overflow-hidden relative group">
+          <div class="card w-full  rounded-xl overflow-hidden relative group hover:cursor-pointer">
             <img src="${meal.strCategoryThumb}" class="w-full h-full" alt="">
             <div
               class="content w-full h-full absolute left-0 top-[100%] bg-white bg-opacity-80 flex flex-col  p-3 text-center  group-hover:top-0  transition-all duration-500">
@@ -87,7 +171,7 @@ export class UI extends APIs {
 
 
     async showCategories(callback, callback2, callback3) {
-
+        $('.loading-page').fadeIn(50)
         const data = await this.getAllCategories()
 
         const html = data.categories.map((e) => {
@@ -97,16 +181,18 @@ export class UI extends APIs {
         // console.log(html);
         document.querySelector('.category-content').innerHTML = html.join('')
         callback(callback2, callback3)
+        $('.loading-page').fadeOut(50)
+
 
     }
 
     getAllMealsOfCategory(callback, callback2, callback3, callback4, callback5) {
 
         $('.card').on('click', async (e) => {
-
+            $('.loading-page').fadeIn(50)
             const data = await callback($(e.target).closest('.card').find('h3').text())
             await callback2(data.meals, callback3, callback4, callback5);
-
+            $('.loading-page').fadeOut(50)
         })
 
     }
@@ -140,20 +226,23 @@ export class UI extends APIs {
 
 
         $('.card').on('click', async (e) => {
-
+            $('.loading-page').fadeIn(300)
             const data = await callback($(e.target).closest('.card').attr('id'));
             await callback2(data)
-
+            $('.loading-page').fadeOut(300)
         })
 
     }
 
 
-   async getMealDetailsHTML(data) {
+    async getMealDetailsHTML(data) {
 
-        const meal = data.meals[0]
+        const meal = await data.meals[0]
         let tags = []
-        if (await meal[`strTags`].includes(',')) {
+        if (await meal[`strTags`] === null) {
+
+        }
+        else if (await meal[`strTags`].includes(',')) {
 
             tags = await meal[`strTags`].split(',')
 
@@ -165,11 +254,11 @@ export class UI extends APIs {
         let recipesHTML = []
         for (let i = 0; i < 20; i++) {
 
-            if (meal[`strMeasure${i}`] === null || meal[`strMeasure${i}`] === ' ' || meal[`strMeasure${i}`] === undefined) {
+            if (meal[`strMeasure${i}`] === null || meal[`strMeasure${i}`] === ' ' || meal[`strMeasure${i}`] === undefined || meal[`strMeasure${i}`] === '') {
 
             }
             else {
-                recipesHTML.push(`<div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">` + meal[`strMeasure${i}`] + meal[`strIngredient${i}`] + `</div>`);
+                recipesHTML.push(`<div class="recipe bg-blue-300 text-black p-1 rounded-lg overflow-hidden me-[16px] mt-[16px]">` + meal[`strMeasure${i}`] + ' ' + meal[`strIngredient${i}`] + `</div>`);
 
             }
             // console.log(meal[`strMeasure${i}`] + meal[`strIngredient${i}`]);
@@ -253,7 +342,7 @@ ${tagsHTML.join()}
         return `        
         <div class="card-container md:w-3/12 sm:min-w-12 p-3 shrink-0 ">
 
-          <div class="card w-full  rounded-xl overflow-hidden relative group text-center text-white">
+          <div class="card w-full  rounded-xl overflow-hidden relative group text-center text-white hover:cursor-pointer">
 
             <i class="fa-solid fa-house-laptop  text-6xl "></i>
             <h3 class=" text-2xl font-semibold">${meal.strArea}</h3>
@@ -265,7 +354,7 @@ ${tagsHTML.join()}
 
 
     async showAreas(callback, callback1, callback2, callback3) {
-
+        $('.loading-page').fadeIn(50)
         const data = await this.getAreas()
 
         const html = data.meals.map((e) => {
@@ -276,15 +365,16 @@ ${tagsHTML.join()}
         document.querySelector('.area-content').innerHTML = html.join('')
 
         callback(callback1, callback2, callback3)
-
+        $('.loading-page').fadeOut(50)
     }
 
 
     getAreaMeals(callback, callback1, callback2) {
-
         const ui = new UI()
 
         $('.card').on('click', async (e) => {
+
+            $('.loading-page').fadeIn(50)
 
             const data = await ui.getMealsByArea($(e.target).closest('.card').find('h3').text())
 
@@ -305,17 +395,14 @@ ${tagsHTML.join()}
             $('.home-content').html(mealsOfAreaHTML.join(''))
 
             await callback(callback1, callback2)
+            $('.loading-page').fadeOut(50)
+            
         })
 
 
 
 
     }
-
-
-
-
-
 
 
 
@@ -329,7 +416,7 @@ ${tagsHTML.join()}
         return `        
                <div class="card-container md:w-3/12 sm:min-w-12 p-3 shrink-0 ">
 
-          <div class="card w-full  rounded-xl overflow-hidden relative group text-center text-white">
+          <div class="card w-full  rounded-xl overflow-hidden relative group text-center text-white hover:cursor-pointer">
 
             <i class="fa-solid fa-drumstick-bite  text-6xl "></i>
             <h3 class=" text-2xl font-semibold mb-2">${meal.strIngredient}</h3>
@@ -341,7 +428,7 @@ ${tagsHTML.join()}
     }
 
     async showIngredients(callback, callback1, callback2, callback3) {
-
+        $('.loading-page').fadeIn(50)
         const data = await this.getIngredients()
 
         const html = data.meals.map((e) => {
@@ -352,13 +439,14 @@ ${tagsHTML.join()}
         document.querySelector('.ingredients-content').innerHTML = html.slice(0, 20).join('')
 
         callback(callback1, callback2, callback3)
+        $('.loading-page').fadeOut(50)
     }
 
     getIngredientMeals(callback, callback1, callback2) {
-
         const ui = new UI()
 
         $('.card').on('click', async (e) => {
+            $('.loading-page').fadeIn(50)
 
             const data = await ui.getMealsByIngredient($(e.target).closest('.card').find('h3').text())
 
@@ -378,6 +466,8 @@ ${tagsHTML.join()}
             $('.home-content').html(mealsOfIngredientHTML.join(''))
 
             await callback(callback1, callback2)
+            $('.loading-page').fadeOut(50)
+
         })
 
 
